@@ -1,8 +1,4 @@
 # Yunzai-plugins
-云崽插件
-
-<details>
-<summary>伪造聊天</summary>
 
 ### 伪造聊天.js
 
@@ -26,6 +22,3 @@ curl -o "./plugins/example/伪造聊天.js" "https://github.com/MozuGit/Mozu-Yun
 
 - **自定义时间**：若没有设置时间，会自动获取
 - **自定义昵称**：若没有设置名字，会自动获取
-
-
-</details>
