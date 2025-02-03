@@ -7,7 +7,7 @@
 ##### Github
 
 ```
-curl -o "./plugins/example/伪造聊天.js" "https://github.com/MozuGit/Mozu-Yunzai/blob/main/%E4%BC%AA%E9%80%A0%E8%81%8A%E5%A4%A9.js"
+curl -o "./plugins/example/伪造聊天.js" "https://github.com/MozuGit/Mozu-Yunzai/blob/main/伪造聊天.js"
 ```
 
 #### 简介
