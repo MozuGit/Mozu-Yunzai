@@ -28,3 +28,4 @@ curl -o "./plugins/example/伪造聊天.js" "https://gitee.com/MozuGit/Mozu-Yunz
 
 - **自定义时间**：若没有设置时间，会自动获取
 - **自定义昵称**：若没有设置名字，会自动获取
+- **自定义图片**：消息发送时附带图片，在文本消息里放入=img=的字符串
