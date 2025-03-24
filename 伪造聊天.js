@@ -1,3 +1,5 @@
+let QQlist = [3343712589] //防止伪造
+
 export class Mozu extends plugin {
   constructor() {
     super({
@@ -51,6 +53,7 @@ export class Mozu extends plugin {
             if (imgUrls.length !== 1) imgUrls.pop()
         }
      }
+     if (QQlist.includes(Number(msg[0])) && !e.isMaster) return e.reply("存在白名单用户，无法伪造", true)
       msgList.push({
         message: bt,  
         user_id: Number(msg[0]),      
