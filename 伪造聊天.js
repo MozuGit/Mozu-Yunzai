@@ -1,4 +1,7 @@
+import fetch from 'node-fetch'
+
 let QQlist = [3343712589] //防止伪造
+let Grouplist = [1020261095]
 
 export class Mozu extends plugin {
   constructor() {
@@ -6,7 +9,7 @@ export class Mozu extends plugin {
       name: "伪造聊天",
       dsc: "自定义伪造聊天",
       event: "message",
-      priority: 5000,
+      priority: 1145,
       rule: [
         {
           reg: "^#?伪(造|装)(聊天)?",
@@ -53,11 +56,13 @@ export class Mozu extends plugin {
             if (imgUrls.length !== 1) imgUrls.pop()
         }
      }
+     let res = await (await fetch(`http://jiuli.xiaoapi.cn/i/qq/qq_level.php?qq=${Number(msg[0])}`)).json()
+     if (Grouplist.includes(this.e.group_id) && !e.isMaster) return e.reply("存在白名单群聊，无法伪造", true)
      if (QQlist.includes(Number(msg[0])) && !e.isMaster) return e.reply("存在白名单用户，无法伪造", true)
       msgList.push({
         message: bt,  
         user_id: Number(msg[0]),      
-        nickname: ifname ? msg[3] : await Bot.pickFriend(Number(msg[0])).getInfo().nickname,
+        nickname: ifname ? msg[3] : res.name || res.msg,
         time: ifmsg ? Number(date) / 1000 : e.time
       })
       ifmsg = false
