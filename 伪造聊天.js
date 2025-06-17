@@ -1,7 +1,7 @@
 import fetch from 'node-fetch'
 
 let QQlist = [3343712589] //防止伪造
-let Grouplist = [1020261095]
+let Grouplist = [] 
 
 export class Mozu extends plugin {
   constructor() {
