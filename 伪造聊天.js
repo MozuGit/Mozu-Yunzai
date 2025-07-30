@@ -1,7 +1,7 @@
-import fetch from 'node-fetch'
+//伪造聊天3343712589,123,2025/7/31 11:45:14
 
 let QQlist = [3343712589] //防止伪造
-let Grouplist = [] 
+let Grouplist = []
 
 export class Mozu extends plugin {
   constructor() {
@@ -36,12 +36,10 @@ export class Mozu extends plugin {
     for (let i = 0; i < data.length; i++) {
      let bt = []
      let ys = []
-     let ifmsg = false
-     let ifname = false
+     let time = false
      let msg = data[i].split(/,\s*/)
-     if (msg.length > 3) ifname = true
      if (msg.length > 2) { 
-        ifmsg = true
+        time = true
         if (msg[2] !== null && msg[2] !== undefined && msg[2] !== "") {var date = new Date(msg[2])} else {var date = e.time * 1000}
      }
      if (msg.length < 2) {
@@ -56,17 +54,15 @@ export class Mozu extends plugin {
             if (imgUrls.length !== 1) imgUrls.pop()
         }
      }
-     let res = await (await fetch(`http://jiuli.xiaoapi.cn/i/qq/qq_level.php?qq=${Number(msg[0])}`)).json()
      if (Grouplist.includes(this.e.group_id) && !e.isMaster) return e.reply("存在白名单群聊，无法伪造", true)
      if (QQlist.includes(Number(msg[0])) && !e.isMaster) return e.reply("存在白名单用户，无法伪造", true)
       msgList.push({
         message: bt,  
         user_id: Number(msg[0]),      
-        nickname: ifname ? msg[3] : res.name || res.msg,
-        time: ifmsg ? Number(date) / 1000 : e.time
+        nickname: Bot[e.self_id].pickUser(Number(msg[0])).getSimpleInfo().nickname,
+        time: time ? Number(date) / 1000 : e.time
       })
-      ifmsg = false
-      ifname = false
+      time = false
     }
     let forwardMsg = await e.group.makeForwardMsg(msgList)
     await e.reply(forwardMsg, false, (e.isMaster) ? { recallMsg: 0 } : { recallMsg: 60 })
